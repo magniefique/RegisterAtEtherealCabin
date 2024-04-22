@@ -114,3 +114,8 @@ function checkPass() {
         return false;
     }
 }
+
+function changeText(){
+    let btn = document.getElementsByClassName("file_button");
+    btn[0].innerHTML = "Uploaded";
+}
