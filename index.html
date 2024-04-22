@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <header>
+            <div id="title">
+                <h1>CABIN 626</h1>
+                <p>providing ethereal living.</p>
+            </div>
+        </header>
+        <section class="web_container">
+            <h1 class="web_title">Member Registration</h1>
+            <p class="web_sub">the first true step to etherealness.</p>
+            <form action="index.html" method="get" onsubmit="checkPass();">
+                <h2 class="form_title">account details</h2>
+                <div class="input_field">
+                    <div class="q_cont">
+                        <label for="username">Username *</label>
+                        <input type="text" id="username" name="username" placeholder="iudex12 *" required>
+                    </div>
+
+                    <div class="q_cont">
+                        <label for="pass">Password *</label>
+                        <input type="password" id="pass" name="pass" placeholder="Enter Password *" required>
+                    </div>
+
+                    <div class="q_cont">
+                        <label for="pass">Confirm Password *</label>
+                        <input type="password" id="repass" name="repass" placeholder="Re-enter Password *" required>
+                    </div>
+                </div>
+                
+                <h2 class="form_title">personal information</h2>
+                
+                <div class="input_field">
+                    <div class="q_cont">
+                        <label for="lname">Last Name *</label>
+                        <input type="text" id="lname" name="lname" placeholder="Iudex " required>
+                    </div>
+                    
+                    <div class="q_cont">
+                        <label for="fname">First Name *</label>
+                        <input type="text" id="fname" name="fname" placeholder="Neuvillette " required>
+                    </div>
+    
+                    <div class="q_cont">
+                        <label for="mname">Middle Name</label>
+                        <input type="text" id="mname" name="mname" placeholder="Rizal">
+                    </div>
+                    
+                    <div class="q_cont">
+                        <label for="bdate">Birth Date *</label>
+                        <input type="date" id="bdate" name="bdate" required>
+                    </div>
+
+                    <div class="q_cont">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="email@domain.com " required>
+                    </div>
+                    
+                    <div class="q_cont">
+                        <label for="cnum">Mobile Number *</label>
+                        <input type="text" id="cnum" name="cnum" pattern="[0-9]{11}" placeholder="09123456789 " required>
+                    </div>
+
+                </div>
+
+                <h2 class="form_title">additional personal information</h2>
+
+                <div class="input_field">
+                    <div class="q_cont">
+                        <label>Gender *</label>
+                        <div class="radio_cont">
+                            <div>
+                                <input type="radio" id="male" value="male" name="gender">
+                                <label for="male">Male </label>
+                            </div>
+                            <div>
+                                <input type="radio" id="female" value="female" name="gender">
+                                <label for="female">Female </label>
+                            </div>
+                            <div>
+                                <input type="radio" id="others" value="others" name="gender">
+                                <label for="rathernot" input="text">Others</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="q_cont">
+                        <label>Employment Status *</label>
+                        <div class="radio_cont">
+                            <div>
+                                <input type="radio" id="employed" value="employed" name="empstatus">
+                                <label for="employed">Employed </label>
+                            </div>
+                            <div>
+                                <input type="radio" id="notemployed" value="notemployed" name="empstatus">
+                                <label for="notemployed">Not Employed</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="selfemployed" value="selfemployed" name="empstatus">
+                                <label for="selfemployed">Self Employed</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="q_cont">
+                        <label>Disabled *</label>
+                        <div class="radio_cont">
+                            <div>
+                                <input type="radio" id="disabled" value="disabled" name="disability">
+                                <label for="disabled">Yes, I am disabled.</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="notdisabled" value="notdisabled" name="disability">
+                                <label for="notdisabled">No, I am not disabled. </label>
+                            </div>
+                            <div>
+                                <input type="radio" id="rathernot" value="rathernot" name="disability">
+                                <label for="rathernot">I'd rather not disclose.</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="form_title">current address information</h2>
+
+                <div class="input_field">
+                    <div class="l_cont">
+                        <label for="address1">Address Line 1 *</label>
+                        <input type="text" id="address1" name="address1" placeholder="Enter your address " required>
+                    </div>
+
+                    <div class="l_cont">
+                        <label for="address2">Address Line 2 </label>
+                        <input type="text" id="address2" name="address2" placeholder="Enter additional address" >
+                    </div>
+                    
+                    <div class="q_cont">
+                        <label for="country">Country *</label>
+                        <select id="country" name="country" onchange="updateReg();" required>
+                            <option value="" disabled selected>Select Country</option>
+                            <option value="Philippines">Philippines</option>
+                        </select>
+                    </div>
+
+                    <div class="q_cont">
+                        <label for="region">Region *</label>
+                        <select id="region" name="region" onchange="updateProv();" required>
+                            <option value="" disabled selected>Select Region</option>
+                        </select>
+                    </div>
+                    
+                    <div class="q_cont">
+                        <label for="prov">Province *</label>
+                        <select id="prov" name="prov" onchange="updateCity();" required>
+                            <option value="" id="default" disabled selected>Select Province</option>
+                        </select>
+                    </div>
+
+                    <div class="q_cont">
+                        <label for="city">City *</label>
+                        <select id="city" name="city" onchange="updateBrgy();" required>
+                            <option value="" id="default" disabled selected>Select City/Municipality</option>
+                        </select>
+                    </div>
+
+                    <div class="q_cont">
+                        <label for="brgy">Barangay *</label>
+                        <select id="brgy" name="brgy" required>
+                            <option value="" id="default" disabled selected>Select Barangay</option>
+                        </select>
+                    </div>
+
+                    <div class="q_cont">
+                        <label for="pcode">Postal Code </label>
+                        <input type="text" id="pcode" name="pcode" pattern="[0-9]{4}" placeholder="1400">
+                    </div>
+                </div>
+
+                <h2 class="form_title">membership essentials</h2>
+
+
+            </form>
+        </section>
+        <footer></footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
