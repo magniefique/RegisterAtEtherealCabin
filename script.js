@@ -1,3 +1,19 @@
+const landing_page = document.getElementById("landing_page");
+const home_page = document.getElementById("reg_page");
+
+function disableLanding()
+{
+    landing_page.addEventListener("transitionend", hideLanding());
+    landing_page.style.opacity = "0%";
+    landing_page.style.visibility = "hidden";
+}
+
+function hideLanding(){
+    home_page.style.opacity = "100%";
+    home_page.style.visibility = "visible";
+    home_page.style.overflowY = "scroll";
+}
+
 const reg_cont = document.getElementById("region");
 const prov_cont = document.getElementById("prov");
 const city_cont = document.getElementById("city");

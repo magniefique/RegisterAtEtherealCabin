@@ -9,20 +9,25 @@
     <title>Cabin 626 - Registration Form</title>
 </head>
 <body>
-    <main>
-        <audio autoplay loop>
-            <source src="assets/hum.mp3">
-        </audio>
+    <section id="landing_page">
+        <div class="bg"></div>
+        <div class="landing_title">
+            <h1>CABIN 626</h1>
+            <p>providing an ethereal living.</p>
+            <input type="button" value="Join Us" onclick="disableLanding()">
+        </div>
+    </section>
+    <main id="reg_page">
         <header>
             <div id="title">
                 <h1>CABIN 626</h1>
-                <p>providing ethereal living.</p>
+                <p>providing an ethereal living.</p>
             </div>
         </header>
         <section class="web_container">
             <h1 class="web_title">Member Registration</h1>
             <p class="web_sub">the first true step to etherealness.</p>
-            <form action="index.html" method="get" onsubmit="checkPass();">
+            <form action="#" method="post" onsubmit="checkPass();">
                 <h2 class="form_title">account details</h2>
                 <div class="input_field">
                     <div class="q_cont">
@@ -65,8 +70,8 @@
                     </div>
 
                     <div class="q_cont">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" placeholder="email@domain.com " required>
+                        <label for="useremail">Email Address *</label>
+                        <input type="email" id="useremail" name="useremail" placeholder="email@domain.com " required>
                     </div>
                     
                     <div class="q_cont">
@@ -199,8 +204,8 @@
                     </div>
 
                     <div class="q_cont">
-                        <label for="pcode">Postal Code </label>
-                        <input type="text" id="pcode" name="pcode" pattern="[0-9]{4}" placeholder="1400">
+                        <label for="pcode">Postal Code *</label>
+                        <input type="text" id="pcode" name="pcode" pattern="[0-9]{4}" placeholder="1400" required>
                     </div>
                 </div>
 
@@ -237,6 +242,16 @@
                         <div class="file_custom">
                             <label for="memberfile" class="file_button">Upload</label>
                             <input type="file" id="memberfile" name="memberfile" onchange="changeText();">
+                        </div>
+                    </div>
+                    <div class="l_cont">
+                        <div>
+                            <input type="checkbox" id="verif1" name="verif1" required>
+                            <label for="verif1">All the information I have entered  is correct and complete.</label>
+                        </div>
+                        <div style="margin-bottom: 80px;">
+                            <input type="checkbox" id="verif2" name="verif2" required>
+                            <label for="verif2">I agree to the <b>Terms and Service</b> of the Organization.</label>
                         </div>
                     </div>
                     <div class="submit_cont">
