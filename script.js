@@ -118,16 +118,25 @@ function resetDefault(opt){
     opt.disabled = true;
 }
 
+let pass_check = false;
+let cnum_check = false
+
 function checkPass() {
     let password = document.getElementById("pass");
     let repassword = document.getElementById("repass");
+    let passconfirm = document.getElementById("pass_confirm");
 
-    if(password.value == repassword.value) {
-        return true;
-    }
-    else {
-        alert('Password does not match!');
-        return false;
+    if (repassword.value !== ""){
+        if(password.value == repassword.value) {
+            passconfirm.innerHTML = "Passwords match.";
+            passconfirm.style.color = "#90EE90";
+            pass_check = 1;
+        }
+        else {
+            passconfirm.innerHTML = "Passwords does not match.";
+            passconfirm.style.color = "	#FF7F7F";
+            pass_check = 0;
+        }
     }
 }
 
@@ -135,3 +144,93 @@ function changeText(){
     let btn = document.getElementsByClassName("file_button");
     btn[0].innerHTML = "Uploaded";
 }
+
+// Check each field
+function checkFields(div) {
+    var inputs = document.querySelectorAll(div);
+    var filled = true;
+
+    inputs.forEach(function(input) {
+        if (input.value.trim() === '') {
+            filled = false;
+        }
+        if (input.name === 'repass') {
+            if (pass_check === 0 || input.value.length < 4) {
+                filled = false;
+            }
+        }
+        if (input.name === 'cnum'){
+            if (input.value.length < 11){
+                filled = false;
+            }
+        }
+        if (input.name === 'pcode'){
+            if (input.value.length < 4){
+                filled = false;
+            }
+        }
+    });
+
+    return filled;
+}
+
+// Function to remove blur effect from pers_info
+function removeBlur(div) {
+    document.getElementById(div).style.filter = "none";
+    document.getElementById(div).style.pointerEvents = "all";
+}
+
+function addBlur(div) {
+    document.getElementById(div).style.filter = "blur(4px)";
+    document.getElementById(div).style.pointerEvents = "none";
+}
+
+// Event listener for input changes in acc_dets
+document.getElementById('acc_dets').addEventListener('input', function() {
+    if (checkFields('#acc_dets input[required]')) {
+        removeBlur('pers_info');
+    }
+    else {
+        addBlur('pers_info');
+    }
+});
+
+// Event listener for input changes in pers_info
+document.getElementById('pers_info').addEventListener('input', function() {
+    if (checkFields('#pers_info input[required]')) {
+        removeBlur('add_info');
+    }
+    else {
+        addBlur('add_info');
+    }
+});
+
+// Event listener for input changes in add_info
+document.getElementById('add_info').addEventListener('input', function() {
+    if (checkFields('#add_info input[required]')) {
+        removeBlur('address');
+    }
+    else {
+        addBlur('address');
+    }
+});
+
+// Event listener for input changes in address
+document.getElementById('address').addEventListener('input', function() {
+    if (checkFields('#address input[required]')) {
+        removeBlur('member');
+    }
+    else {
+        addBlur('member');
+    }
+});
+
+// Event listener for input changes in member
+document.getElementById('member').addEventListener('input', function() {
+    if (checkFields('#member input[required]')) {
+        removeBlur('submit_cont');
+    }
+    else {
+        addBlur('submit_cont');
+    }
+});

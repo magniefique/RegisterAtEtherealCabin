@@ -27,236 +27,250 @@
         <section class="web_container">
             <h1 class="web_title">Member Registration</h1>
             <p class="web_sub">the first true step to etherealness.</p>
-            <form action="#" method="post" onsubmit="checkPass();">
-                <h2 class="form_title">account details</h2>
-                <div class="input_field">
-                    <div class="q_cont">
-                        <label for="username">Username *</label>
-                        <input type="text" id="username" name="username" placeholder="iudex12 *" required>
-                    </div>
+            <form action="acknowledgement.html" method="get">
 
-                    <div class="q_cont">
-                        <label for="pass">Password *</label>
-                        <input type="password" id="pass" name="pass" placeholder="Enter Password *" required>
-                    </div>
-
-                    <div class="q_cont">
-                        <label for="pass">Confirm Password *</label>
-                        <input type="password" id="repass" name="repass" placeholder="Re-enter Password *" required>
-                    </div>
-                </div>
-                
-                <h2 class="form_title">personal information</h2>
-                
-                <div class="input_field">
-                    <div class="q_cont">
-                        <label for="lname">Last Name *</label>
-                        <input type="text" id="lname" name="lname" placeholder="Iudex " required>
-                    </div>
-                    
-                    <div class="q_cont">
-                        <label for="fname">First Name *</label>
-                        <input type="text" id="fname" name="fname" placeholder="Neuvillette " required>
-                    </div>
+                <div id="acc_dets">
+                    <h2 class="form_title">account details</h2>
+                    <div class="input_field">
+                        <div class="q_cont">
+                            <label for="username">Username *</label>
+                            <input type="text" id="username" name="username" placeholder="iudex12 *" pattern="[A-Za-z0-9]+" required>
+                            <p class="account">Consists of only letters and numbers.</p>
+                        </div>
     
-                    <div class="q_cont">
-                        <label for="mname">Middle Name</label>
-                        <input type="text" id="mname" name="mname" placeholder="Rizal">
-                    </div>
-                    
-                    <div class="q_cont">
-                        <label for="bdate">Birth Date *</label>
-                        <input type="date" id="bdate" name="bdate" required>
-                    </div>
-
-                    <div class="q_cont">
-                        <label for="useremail">Email Address *</label>
-                        <input type="email" id="useremail" name="useremail" placeholder="email@domain.com " required>
-                    </div>
-                    
-                    <div class="q_cont">
-                        <label for="cnum">Mobile Number *</label>
-                        <input type="text" id="cnum" name="cnum" pattern="[0-9]{11}" placeholder="09123456789 " required>
-                    </div>
-
-                </div>
-
-                <h2 class="form_title">additional personal information</h2>
-
-                <div class="input_field">
-                    <div class="q_cont">
-                        <label>Gender *</label>
-                        <div class="radio_cont">
-                            <div>
-                                <input type="radio" id="male" value="male" name="gender">
-                                <label for="male">Male </label>
-                            </div>
-                            <div>
-                                <input type="radio" id="female" value="female" name="gender">
-                                <label for="female">Female </label>
-                            </div>
-                            <div>
-                                <input type="radio" id="lgbtq" value="lgbtq" name="gender">
-                                <label for="lgbtq">LGBTQ </label>
-                            </div>
-                            <div>
-                                <input type="radio" id="rathernotgen" value="rathernotgen" name="gender">
-                                <label for="rathernotgen" input="text">Rather not disclose</label>
-                            </div>
+                        <div class="q_cont">
+                            <label for="pass">Password *</label>
+                            <input type="password" id="pass" name="pass" placeholder="Enter Password *" pattern=".{4,}" oninput="checkPass()" required>
+                            <p class="account">Must consist of 4 or more characters.</p>
+                        </div>
+    
+                        <div class="q_cont">
+                            <label for="pass">Confirm Password *</label>
+                            <input type="password" id="repass" name="repass" placeholder="Re-enter Password *" oninput="checkPass()" required>
+                            <p class="account" id="pass_confirm">Passwords must match.</p>
                         </div>
                     </div>
-                    <div class="q_cont">
-                        <label>Employment Status *</label>
-                        <div class="radio_cont">
-                            <div>
-                                <input type="radio" id="employed" value="employed" name="empstatus">
-                                <label for="employed">Employed </label>
-                            </div>
-                            <div>
-                                <input type="radio" id="notemployed" value="notemployed" name="empstatus">
-                                <label for="notemployed">Not Employed</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="selfemployed" value="selfemployed" name="empstatus">
-                                <label for="selfemployed">Self Employed</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="student" value="student" name="empstatus">
-                                <label for="student">Student</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="q_cont">
-                        <label>Disabled *</label>
-                        <div class="radio_cont">
-                            <div>
-                                <input type="radio" id="disabled" value="disabled" name="disability">
-                                <label for="disabled">Yes, I am disabled.</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="notdisabled" value="notdisabled" name="disability">
-                                <label for="notdisabled">No, I am not disabled. </label>
-                            </div>
-                            <div>
-                                <input type="radio" id="notsure" value="notsure" name="disability">
-                                <label for="notsure">I am not entirely sure.</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="rathernot" value="rathernot" name="disability">
-                                <label for="rathernot">I'd rather not disclose.</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="l_cont">
-                        <label for="additional">Additionals</label>
-                        <textarea id="additional" name="additional" placeholder="Say more about yourself..." rows="4"></textarea>
-                    </div>
                 </div>
-
-                <h2 class="form_title">current address information</h2>
-
-                <div class="input_field">
-                    <div class="l_cont">
-                        <label for="address1">Address Line 1 *</label>
-                        <input type="text" id="address1" name="address1" placeholder="Enter your address " required>
-                    </div>
-
-                    <div class="l_cont">
-                        <label for="address2">Address Line 2 </label>
-                        <input type="text" id="address2" name="address2" placeholder="Enter additional address" >
-                    </div>
-                    
-                    <div class="q_cont">
-                        <label for="country">Country *</label>
-                        <select id="country" name="country" onchange="updateReg();" required>
-                            <option value="" disabled selected>Select Country</option>
-                            <option value="Philippines">Philippines</option>
-                        </select>
-                    </div>
-
-                    <div class="q_cont">
-                        <label for="region">Region *</label>
-                        <select id="region" name="region" onchange="updateProv();" required>
-                            <option value="" disabled selected>Select Region</option>
-                        </select>
-                    </div>
-                    
-                    <div class="q_cont">
-                        <label for="prov">Province *</label>
-                        <select id="prov" name="prov" onchange="updateCity();" required>
-                            <option value="" id="default" disabled selected>Select Province</option>
-                        </select>
-                    </div>
-
-                    <div class="q_cont">
-                        <label for="city">City *</label>
-                        <select id="city" name="city" onchange="updateBrgy();" required>
-                            <option value="" id="default" disabled selected>Select City/Municipality</option>
-                        </select>
-                    </div>
-
-                    <div class="q_cont">
-                        <label for="brgy">Barangay *</label>
-                        <select id="brgy" name="brgy" required>
-                            <option value="" id="default" disabled selected>Select Barangay</option>
-                        </select>
-                    </div>
-
-                    <div class="q_cont">
-                        <label for="pcode">Postal Code *</label>
-                        <input type="text" id="pcode" name="pcode" pattern="[0-9]{4}" placeholder="1400" required>
-                    </div>
-                </div>
-
-                <h2 class="form_title">membership essentials</h2>
                 
-                <div class="input_field">
-                    <div class="q_cont">
-                        <label for="membertyper">Membership Type *</label>
-                        <select id="membertyper" name="membertyper" onchange="updateReg();" required>
-                            <option value="" disabled selected>Select Membership Type</option>
-                            <option value="Ethereal Initiate">Initiate</option>
-                            <option value="Veilded Ethereal">Veilded Initiate</option>
-                            <option value="Ethereal Covenant">Empyrean Coven</option>
-                            <option value="Ethereal Enclave">Ethereal Enclave</option>
-                        </select>
-                    </div>
-                    <div class="q_cont">
-                        <label for="memberdur">Membership Duration *</label>
-                        <select id="memberdur" name="memberdur" onchange="updateReg();" required>
-                            <option value="" disabled selected>Select Membership Duration</option>
-                            <option value="1">1 Month</option>
-                            <option value="3">3 Months</option>
-                            <option value="9">9 Months</option>
-                            <option value="12">1 Year</option>
-                        </select>
-                    </div>
-                    <div class="q_cont">
-                        <label for="ref">Referral Code </label>
-                        <input type="text" id="ref" name="ref" pattern="[A-Z,0-9]{6}" placeholder="HT43D">
-                    </div>
+                <div id="pers_info">
+                    <h2 class="form_title">personal information</h2>
                     
-                    <div class="l_cont">
-                        <p class="file_label">Upload a Short Video Introduction of Yourself</p>
-                        <div class="file_custom">
-                            <label for="memberfile" class="file_button">Upload</label>
-                            <input type="file" id="memberfile" name="memberfile" onchange="changeText();">
+                    <div class="input_field">
+                        <div class="q_cont">
+                            <label for="lname">Last Name *</label>
+                            <input type="text" id="lname" name="lname" placeholder="Iudex " required>
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="fname">First Name *</label>
+                            <input type="text" id="fname" name="fname" placeholder="Neuvillette " required>
+                        </div>
+        
+                        <div class="q_cont">
+                            <label for="mname">Middle Name</label>
+                            <input type="text" id="mname" name="mname" placeholder="Rizal">
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="bdate">Birth Date *</label>
+                            <input type="date" id="bdate" name="bdate" required>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="useremail">Email Address *</label>
+                            <input type="email" id="useremail" name="useremail" placeholder="email@domain.com " pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="cnum">Mobile Number *</label>
+                            <input type="text" id="cnum" name="cnum" pattern="[0-9]{11}" placeholder="09123456789 " minlength="11" maxlength="11" required>
                         </div>
                     </div>
-                    <div class="l_cont">
-                        <div>
-                            <input type="checkbox" id="verif1" name="verif1" required>
-                            <label for="verif1">All the required information I have entered is correct and complete.</label>
+                </div>
+
+                <div id="add_info">
+                    <h2 class="form_title">additional personal information</h2>
+
+                    <div class="input_field">
+                        <div class="q_cont">
+                            <label>Gender *</label>
+                            <div class="radio_cont">
+                                <div>
+                                    <input type="radio" id="male" value="male" name="gender"  required>
+                                    <label for="male">Male </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="female" value="female" name="gender"  required>
+                                    <label for="female">Female </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="lgbtq" value="lgbtq" name="gender"  required>
+                                    <label for="lgbtq">LGBTQ </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="rathernotgen" value="rathernotgen" name="gender"  required>
+                                    <label for="rathernotgen" input="text">Rather not disclose</label>
+                                </div>
+                            </div>
                         </div>
-                        <div style="margin-bottom: 80px;">
-                            <input type="checkbox" id="verif2" name="verif2" required>
-                            <label for="verif2">I agree to the <b>Terms and Service</b> of the Organization.</label>
+                        <div class="q_cont">
+                            <label>Employment Status *</label>
+                            <div class="radio_cont">
+                                <div>
+                                    <input type="radio" id="employed" value="employed" name="empstatus" required>
+                                    <label for="employed">Employed </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="notemployed" value="notemployed" name="empstatus" required>
+                                    <label for="notemployed">Not Employed</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="selfemployed" value="selfemployed" name="empstatus" required>
+                                    <label for="selfemployed">Self Employed</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="student" value="student" name="empstatus" required>
+                                    <label for="student">Student</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="q_cont">
+                            <label>Disabled *</label>
+                            <div class="radio_cont">
+                                <div>
+                                    <input type="radio" id="disabled" value="disabled" name="disability" required>
+                                    <label for="disabled">Yes, I am disabled.</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="notdisabled" value="notdisabled" name="disability" required>
+                                    <label for="notdisabled">No, I am not disabled. </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="notsure" value="notsure" name="disability" required>
+                                    <label for="notsure">I am not entirely sure.</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="rathernot" value="rathernot" name="disability" required>
+                                    <label for="rathernot">I'd rather not disclose.</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="l_cont">
+                            <label for="additional">Additionals</label>
+                            <textarea id="additional" name="additional" placeholder="Say more about yourself..." rows="4"></textarea>
                         </div>
                     </div>
-                    <div class="submit_cont">
-                        <input type="submit" value="Enter Ethereality">
+                </div>
+
+                <div id="address">
+                    <h2 class="form_title">current address information</h2>
+
+                    <div class="input_field">
+                        <div class="l_cont">
+                            <label for="address1">Address Line 1 *</label>
+                            <input type="text" id="address1" name="address1" placeholder="Enter your address " required>
+                        </div>
+
+                        <div class="l_cont">
+                            <label for="address2">Address Line 2 </label>
+                            <input type="text" id="address2" name="address2" placeholder="Enter additional address" >
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="country">Country *</label>
+                            <select id="country" name="country" onchange="updateReg();" required>
+                                <option value="" disabled selected>Select Country</option>
+                                <option value="Philippines">Philippines</option>
+                            </select>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="region">Region *</label>
+                            <select id="region" name="region" onchange="updateProv();" required>
+                                <option value="" disabled selected>Select Region</option>
+                            </select>
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="prov">Province *</label>
+                            <select id="prov" name="prov" onchange="updateCity();" required>
+                                <option value="" id="default" disabled selected>Select Province</option>
+                            </select>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="city">City *</label>
+                            <select id="city" name="city" onchange="updateBrgy();" required>
+                                <option value="" id="default" disabled selected>Select City/Municipality</option>
+                            </select>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="brgy">Barangay *</label>
+                            <select id="brgy" name="brgy" required>
+                                <option value="" id="default" disabled selected>Select Barangay</option>
+                            </select>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="pcode">Postal Code *</label>
+                            <input type="text" id="pcode" name="pcode" pattern="[0-9]{4}" placeholder="1400" maxlength="4" minlength="4" required>
+                        </div>
                     </div>
+                </div>
+
+                <div id="member">
+                    <h2 class="form_title">membership essentials</h2>
+                
+                    <div class="input_field" id="final_field">
+                        <div class="q_cont">
+                            <label for="membertyper">Membership Type *</label>
+                            <select id="membertyper" name="membertyper" required>
+                                <option value="" disabled selected>Select Membership Type</option>
+                                <option value="EtherealInitiate">Initiate</option>
+                                <option value="VeildedEthereal">Veilded Initiate</option>
+                                <option value="EtherealCovenant">Empyrean Coven</option>
+                                <option value="EtherealEnclave">Ethereal Enclave</option>
+                            </select>
+                        </div>
+                        <div class="q_cont">
+                            <label for="memberdur">Membership Duration *</label>
+                            <select id="memberdur" name="memberdur" required>
+                                <option value="" disabled selected>Select Membership Duration</option>
+                                <option value="1">1 Month</option>
+                                <option value="3">3 Months</option>
+                                <option value="9">9 Months</option>
+                                <option value="12">1 Year</option>
+                            </select>
+                        </div>
+                        <div class="q_cont">
+                            <label for="ref">Referral Code </label>
+                            <input type="text" id="ref" name="ref" pattern="[A-Z,0-9]{6}" placeholder="HT43D">
+                        </div>
+                        
+                        <div class="l_cont">
+                            <p class="file_label">Upload a Short Video Introduction of Yourself</p>
+                            <div class="file_custom">
+                                <label for="memberfile" class="file_button">Upload</label>
+                                <input type="file" id="memberfile" name="memberfile" onchange="changeText();">
+                            </div>
+                        </div>
+                        <div class="l_cont">
+                            <div>
+                                <input type="checkbox" id="verif1" name="verif1" required>
+                                <label for="verif1" style="font-weight: 200;">All the required information I have entered is correct and complete.</label>
+                            </div>
+                            <div style="margin-bottom: 80px;">
+                                <input type="checkbox" id="verif2" name="verif2" required>
+                                <label for="verif2" style="font-weight: 200;">I agree to the <b>Terms and Service</b> of the Organization.</label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="submit_cont">
+                    <input type="submit" value="Enter Ethereality">
                 </div>
             </form>
         </section>
