@@ -83,7 +83,7 @@
                         
                         <div class="q_cont">
                             <label for="cnum">Mobile Number *</label>
-                            <input type="text" id="cnum" name="cnum" pattern="[0-9]{11}" placeholder="09123456789 " minlength="11" maxlength="11" required>
+                            <input type="text" id="cnum" name="cnum" pattern="[0-9]{11}" placeholder="0912XXXXXXX " minlength="11" maxlength="11" step="2.2" required>
                         </div>
                     </div>
                 </div>
@@ -227,7 +227,7 @@
                         <div class="q_cont">
                             <label for="membertyper">Membership Type *</label>
                             <select id="membertyper" name="membertyper" required>
-                                <option value="" disabled selected>Select Membership Type</option>
+                                <option value="default" disabled selected>Select Membership Type</option>
                                 <option value="EtherealInitiate">Initiate</option>
                                 <option value="VeildedEthereal">Veilded Initiate</option>
                                 <option value="EtherealCovenant">Empyrean Coven</option>
@@ -237,7 +237,7 @@
                         <div class="q_cont">
                             <label for="memberdur">Membership Duration *</label>
                             <select id="memberdur" name="memberdur" required>
-                                <option value="" disabled selected>Select Membership Duration</option>
+                                <option value="default" disabled selected>Select Membership Duration</option>
                                 <option value="1">1 Month</option>
                                 <option value="3">3 Months</option>
                                 <option value="9">9 Months</option>

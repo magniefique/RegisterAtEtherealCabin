@@ -42,6 +42,9 @@ function updateReg(){
 }
 
 async function updateProv(){
+    addBlur('member');
+    addBlur('submit_cont');
+
     prov_dict = {};
 
     removeOptions(prov_cont);
@@ -65,6 +68,9 @@ async function updateProv(){
 }
 
 async function updateCity(){
+    addBlur('member');
+    addBlur('submit_cont');
+
     city_dict = {};
 
     removeOptions(city_cont);
@@ -88,6 +94,8 @@ async function updateCity(){
 }
 
 async function updateBrgy(){
+    addBlur('member');
+    addBlur('submit_cont');
     
     removeOptions(brgy_cont);
 
@@ -120,6 +128,8 @@ function resetDefault(opt){
 
 let pass_check = false;
 let cnum_check = false
+let verif1 = false;
+let verif2 = false;
 
 function checkPass() {
     let password = document.getElementById("pass");
@@ -160,18 +170,63 @@ function checkFields(div) {
             }
         }
         if (input.name === 'cnum'){
-            if (input.value.length < 11){
+            if (input.value.length < 11 || Number.isNaN(input.value)){
                 filled = false;
             }
         }
         if (input.name === 'pcode'){
-            if (input.value.length < 4){
+            if (input.value.length < 4 || Number.isNaN(input.value)){
                 filled = false;
             }
+        }
+
+        if (input.name === 'verif1'){
+            if(!input.checked){
+                filled = false
+            }
+        }
+
+        if (input.name === 'verif2'){
+            if(!input.checked){
+                filled = false
+            }
+        }
+
+        if (input.value === "default"){
+            filled = false;
         }
     });
 
     return filled;
+}
+
+function checkSucceed(div1, div2){
+    if(checkFields(div1)){
+        removeBlur(div2);
+    }
+}
+
+function checkSucceed2(div1, div2, div3){
+    if(checkFields(div1) && checkFields(div2)){
+        removeBlur(div3);
+    }
+}
+
+function checkRadio(div1){
+    let radio = document.querySelectorAll(div1);
+    if(radio.length > 0) {  //Test if something was checked
+        console.log(radio);
+        return true;
+    } 
+    else {
+        return false;
+    }
+}
+
+function removeRadioBlur(){
+    if (checkRadio('#add_info input[name = "gender"]:checked') && checkRadio('#add_info input[name = "empstatus"]:checked') && checkRadio('#add_info input[name = "disability"]:checked')) {
+        removeBlur('address');
+    }
 }
 
 // Function to remove blur effect from pers_info
@@ -189,9 +244,17 @@ function addBlur(div) {
 document.getElementById('acc_dets').addEventListener('input', function() {
     if (checkFields('#acc_dets input[required]')) {
         removeBlur('pers_info');
+        checkSucceed('#pers_info input[required]', 'add_info');
+        removeRadioBlur()
+        checkSucceed2('#address input[required]', '#address select', 'member');
+        checkSucceed2('#member input[required]', '#member select', 'submit_cont');
     }
     else {
         addBlur('pers_info');
+        addBlur('add_info');
+        addBlur('address');
+        addBlur('member');
+        addBlur('submit_cont');
     }
 });
 
@@ -199,35 +262,47 @@ document.getElementById('acc_dets').addEventListener('input', function() {
 document.getElementById('pers_info').addEventListener('input', function() {
     if (checkFields('#pers_info input[required]')) {
         removeBlur('add_info');
+        removeRadioBlur()
+        checkSucceed2('#address input[required]', '#address select', 'member');
+        checkSucceed2('#member input[required]', '#member select', 'submit_cont');
     }
     else {
         addBlur('add_info');
+        addBlur('address');
+        addBlur('member');
+        addBlur('submit_cont');
     }
 });
 
 // Event listener for input changes in add_info
 document.getElementById('add_info').addEventListener('input', function() {
-    if (checkFields('#add_info input[required]')) {
+    if (checkRadio('#add_info input[name = "gender"]:checked') && checkRadio('#add_info input[name = "empstatus"]:checked') && checkRadio('#add_info input[name = "disability"]:checked')) {
         removeBlur('address');
+        checkSucceed2('#address input[required]', '#address select', 'member');
+        checkSucceed2('#member input[required]', '#member select', 'submit_cont');
     }
     else {
         addBlur('address');
+        addBlur('member');
+        addBlur('submit_cont');
     }
 });
 
 // Event listener for input changes in address
 document.getElementById('address').addEventListener('input', function() {
-    if (checkFields('#address input[required]')) {
+    if (checkFields('#address input[required]') && (checkFields('#address select'))) {
         removeBlur('member');
+        checkSucceed('#member input[required]', 'submit_cont');
     }
     else {
         addBlur('member');
+        addBlur('submit_cont');
     }
 });
 
 // Event listener for input changes in member
 document.getElementById('member').addEventListener('input', function() {
-    if (checkFields('#member input[required]')) {
+    if (checkFields('#member input[required]') && (checkFields('#member select'))) {
         removeBlur('submit_cont');
     }
     else {
