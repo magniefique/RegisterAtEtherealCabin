@@ -207,7 +207,7 @@ label {
     font-weight: 300;
 }
 
-input[type="text"], input[type="email"], input[type="date"], input[type="password"], select {
+input[type="text"], input[type="email"], input[type="date"], input[type="password"], input[type="tel"], select {
     font-family: Poppins;
     font-size: 14pt;
     font-weight: 200;
