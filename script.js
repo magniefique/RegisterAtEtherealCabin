@@ -134,7 +134,19 @@ let verif2 = false;
 function checkPass() {
     let password = document.getElementById("pass");
     let repassword = document.getElementById("repass");
+    let passcheck = document.getElementById("pass_check");
     let passconfirm = document.getElementById("pass_confirm");
+
+    if (password.value !== ""){
+        if(password.value.length < 4){
+            passcheck.innerHTML = "Password is less than 4 characters";
+            passcheck.style.color = "#FF7F7F";
+        }
+        else {
+            passcheck.innerHTML = "Password looks good";
+            passcheck.style.color = "#90EE90";
+        }
+    }
 
     if (repassword.value !== ""){
         if(password.value == repassword.value) {
@@ -309,3 +321,85 @@ document.getElementById('member').addEventListener('input', function() {
         addBlur('submit_cont');
     }
 });
+
+function formSubmit(event) {
+    var url = "database.php";
+    var request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.onload = function() {
+        console.log(request.responseText);
+    };
+  
+    request.onerror = function() {
+        console.log(request.responseText);
+    };
+  
+    request.send(new FormData(event.target));
+    event.preventDefault();
+    window.location.replace("http://localhost/RegistrationForm/acknowledgement.php");
+}
+
+document.getElementById('regform').addEventListener("submit", formSubmit);
+const alert_win = document.getElementById('alert');
+
+function logIn(event){
+    let username = document.getElementById('loginuser').value;
+    let password = document.getElementById('loginpass').value;
+
+    let userInfo = {username : username, password : password};
+    
+    fetch('accountcheck.php', {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json; characterset=utf8"
+        },
+        "body": JSON.stringify(userInfo)
+    }).then((res) => res.json()).then(response => {
+        let account = response[0];
+
+        if(account != undefined){
+            if(account.pass == password){
+                localStorage.setItem("loggedInUser", JSON.stringify(account));
+                window.location.href = "profile.php";
+            }
+            else {
+                alert_win.classList.add('active');
+            }
+        }
+        else {
+            alert_win.classList.add('active');
+        }
+        
+    }).catch(error => console.log(error));
+
+    event.preventDefault();
+}
+
+function checkUsername(){
+    let username = document.getElementById('username').value;
+    let usercheck = document.getElementById('user_confirm');
+
+    let userInfo = {
+        username : username,
+    };
+
+    fetch('accountcheck.php', {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json; characterset=utf8"
+        },
+        "body": JSON.stringify(userInfo)
+    }).then((res) => res.json()).then(response => {
+        let account = response[0];
+
+        if(account != undefined){
+            usercheck.innerHTML = "Username is unavailable."
+            usercheck.style.color = "#FF7F7F";
+        }
+        else {
+            usercheck.innerHTML = "Username is available."
+            usercheck.style.color = "#90EE90";
+        }
+        
+    }).catch(error => console.log(error));
+}
