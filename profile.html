@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Cabin 626 - Home</title>
+</head>
+<body id="profile_page">
+    <header id="profile_header">
+        <div id="title">
+            <h1>C-626</h1>
+        </div>
+        <div id="nav_bar">
+            <p onclick="disableAcc()">Home</p>
+            <p onclick="disableHome()">Account</p>
+            <p onclick="logOut()">Log Out</p>
+        </div>
+    </header>
+    <section id="alert" onclick="disableAlert(this)">
+        <h1>Information Updated!</h1>
+        <p>The information you altered is now reflected in the server.</p>
+        <p>Click anywhere in this tab to continue...</p>
+    </section>
+    <section id="revoke_alert">
+        <h1>Membership Revocation</h1>
+        <p>Are you certain that you wish to revoke Ethereality? You will not be able to enjoy the benefits of our organization. This action is irreversible.</p>
+        <form>
+            <input type="button" value="I am certain." onclick="deactivateAccount()">
+            <input type="button" value="I am not" onclick="disableAlert(document.getElementById('revoke_alert'))">
+        </form>
+    </section>
+    <section id="home_page">
+        <section id="main_segment">
+            <div class="bg"></div>
+            <div id="main_text">
+                <h2>Welcome,</h2>
+                <h1>Subject Name!</h1>
+                <h3>Current Position</h3>
+            </div>
+        </section>
+    </section>
+    <section id="manage_acc">
+        <section class="web_container">
+            <h1 class="web_title">Manage Account Information</h1>
+            <p class="web_sub">edit certain fields that you deem outdated.</p>
+            <form id="updateform" action="" method="post">
+
+                <div id="manage_acc_dets">
+                    <h2 class="form_title">account details</h2>
+                    <div class="input_field">
+                        <div class="q_cont">
+                            <label for="username">Username *</label>
+                            <input type="text" id="username" name="username" placeholder="iudex12 *" pattern="[A-Za-z0-9]+" oninput="checkUsername()" required>
+                            <p class="account" id="user_confirm">Consists of only letters and numbers.</p>
+                        </div>
+    
+                        <div class="q_cont">
+                            <label for="pass">Password *</label>
+                            <input type="password" id="pass" name="pass" placeholder="Enter Password *" pattern=".{4,}" oninput="checkPass()" required>
+                            <p class="account" id="pass_check">Must consist of 4 or more characters.</p>
+                        </div>
+    
+                        <div class="q_cont">
+                            <label for="pass">Confirm Password *</label>
+                            <input type="password" id="repass" name="repass" placeholder="Re-enter Password *" oninput="checkPass()" required>
+                            <p class="account" id="pass_confirm">Passwords must match.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="manage_pers_info">
+                    <h2 class="form_title">personal information</h2>
+                    
+                    <div class="input_field">
+                        <div class="q_cont">
+                            <label for="lname">Last Name *</label>
+                            <input type="text" id="lname" name="lname" placeholder="Iudex " required>
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="fname">First Name *</label>
+                            <input type="text" id="fname" name="fname" placeholder="Neuvillette " required>
+                        </div>
+        
+                        <div class="q_cont">
+                            <label for="mname">Middle Name</label>
+                            <input type="text" id="mname" name="mname" placeholder="Rizal">
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="bdate">Birth Date *</label>
+                            <input type="date" id="bdate" name="bdate" required>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="useremail">Email Address *</label>
+                            <input type="email" id="useremail" name="useremail" placeholder="email@domain.com " pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="cnum">Mobile Number *</label>
+                            <input type="tel" id="cnum" name="cnum" pattern="[0-9]{11}" placeholder="0912XXXXXXX " minlength="11" maxlength="11" step="2.2" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="manage_add_info">
+                    <h2 class="form_title">additional personal information</h2>
+
+                    <div class="input_field">
+                        <div class="q_cont">
+                            <label>Gender *</label>
+                            <div class="radio_cont" id="gender">
+                                <div>
+                                    <input type="radio" id="male" value="male" name="gender" required>
+                                    <label for="male">Male </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="female" value="female" name="gender" required>
+                                    <label for="female">Female </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="lgbtq" value="lgbtq" name="gender" required>
+                                    <label for="lgbtq">LGBTQ </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="rathernotgen" value="rathernotgen" name="gender" required>
+                                    <label for="rathernotgen" input="text">Rather not disclose</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="q_cont">
+                            <label>Employment Status *</label>
+                            <div class="radio_cont" id="empstatus">
+                                <div>
+                                    <input type="radio" id="employed" value="employed" name="empstatus" required>
+                                    <label for="employed">Employed </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="notemployed" value="notemployed" name="empstatus" required>
+                                    <label for="notemployed">Not Employed</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="selfemployed" value="selfemployed" name="empstatus" required>
+                                    <label for="selfemployed">Self Employed</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="student" value="student" name="empstatus" required>
+                                    <label for="student">Student</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="q_cont">
+                            <label>Disabled *</label>
+                            <div class="radio_cont" id="disability">
+                                <div>
+                                    <input type="radio" id="disabled" value="disabled" name="disability" required>
+                                    <label for="disabled">Yes, I am disabled.</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="notdisabled" value="notdisabled" name="disability" required>
+                                    <label for="notdisabled">No, I am not disabled. </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="notsure" value="notsure" name="disability" required>
+                                    <label for="notsure">I am not entirely sure.</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="rathernot" value="rathernot" name="disability" required>
+                                    <label for="rathernot">I'd rather not disclose.</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="l_cont">
+                            <label for="additional">Additionals</label>
+                            <textarea id="additional" name="additional" placeholder="Say more about yourself..." rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="manage_address">
+                    <h2 class="form_title">current address information</h2>
+
+                    <div class="input_field">
+                        <div class="l_cont">
+                            <label for="address1">Address Line 1 *</label>
+                            <input type="text" id="address1" name="address1" placeholder="Enter your address " required>
+                        </div>
+
+                        <div class="l_cont">
+                            <label for="address2">Address Line 2 </label>
+                            <input type="text" id="address2" name="address2" placeholder="Enter additional address" >
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="country">Country *</label>
+                            <select id="country" name="country" onchange="updateReg();" required>
+                                <option value="" disabled selected>Select Country</option>
+                                <option value="PHILIPPINES">PHILIPPINES</option>
+                            </select>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="region">Region *</label>
+                            <select id="region" name="region" onchange="updateProv();" required>
+                                <option value="" disabled selected>Select Region</option>
+                            </select>
+                        </div>
+                        
+                        <div class="q_cont">
+                            <label for="prov">Province *</label>
+                            <select id="prov" name="prov" onchange="updateCity();" required>
+                                <option value="" id="default" disabled selected>Select Province</option>
+                            </select>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="city">City *</label>
+                            <select id="city" name="city" onchange="updateBrgy();" required>
+                                <option value="" id="default" disabled selected>Select City/Municipality</option>
+                            </select>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="brgy">Barangay *</label>
+                            <select id="brgy" name="brgy" required>
+                                <option value="" id="default" disabled selected>Select Barangay</option>
+                            </select>
+                        </div>
+
+                        <div class="q_cont">
+                            <label for="pcode">Postal Code *</label>
+                            <input type="tel" id="pcode" name="pcode" pattern="[0-9]{4}" placeholder="1400" maxlength="4" minlength="4" required>
+                        </div>
+                    </div>
+                </div>
+                <div id="submit_cont">
+                    <input id="update_info" type="submit" value="Update Information">
+                </div>
+            </form>
+        </section>
+        <footer>
+            <p id="revoke" onclick="promptAlert(document.getElementById('revoke_alert'))">Revoke Membership?</p>
+            © 2024 Ethereality
+            <div class="bg"></div>
+        </footer>
+    </section>
+<script>
+    let loggedIn = sessionStorage.getItem("loggedInUser");
+
+    let loggedInData = JSON.parse(loggedIn);
+
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+        else if(loggedInData === null){
+            logOut();
+        }
+    };
+
+    const home_name =document.querySelector("#main_text h1");
+    const home_position =document.querySelector("#main_text h3");
+
+    function setProfile(){
+        home_name.innerHTML = loggedInData['fname'];
+        home_position.innerHTML = "A member of the " + loggedInData['membertyper'] + ".";
+    }
+
+    setProfile();
+
+    function logOut(){
+        sessionStorage.removeItem('loggedInUser');
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href='index.html';
+    }
+
+    const prof_page =document.getElementById("profile_page");
+    const home_page =document.getElementById("home_page");
+    const acc_page =document.getElementById("manage_acc");
+    const alert_win = document.getElementById('alert');
+    
+    function updateProfile(dict){
+        loggedInData = dict;
+        setProfile();
+        promptAlert(alert_win);
+    }
+
+    function promptAlert(element){
+        document.getElementById('profile_header').style.filter = "blur(10px)";
+        document.getElementById('profile_header').style.pointerEvents = "none";
+        acc_page.style.filter = "blur(10px)";
+        acc_page.style.pointerEvents = "none";
+        element.classList.add('active');
+    }
+
+    /*
+    if(isUpdate === 1){
+        promptUpdate();
+    }*/
+
+    function disableAlert(element){
+        element.classList.remove('active');
+        document.getElementById('profile_header').style.filter = "none";
+        document.getElementById('profile_header').style.pointerEvents = "all";
+        acc_page.style.filter = "none";
+        acc_page.style.pointerEvents = "all";
+    }
+
+    function disableHome(){
+        home_page.style.pointerEvents = 'none';
+        home_page.style.opacity = '0%';
+        home_page.style.pointerEvents = "none"
+        home_page.ontransitionend = enableAcc();
+    }
+
+    function enableAcc(){
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        acc_page.style.opacity = '100%';
+        acc_page.style.pointerEvents = "all"
+        prof_page.style.overflowY = 'auto';
+        setValues();
+    }
+
+    function enableHome(){
+        home_page.style.pointerEvents = 'all';
+        home_page.style.pointerEvents = "all"
+        home_page.style.opacity = '100%';
+    }
+
+    function disableAcc(){
+        acc_page.style.opacity = '0%';
+        acc_page.style.pointerEvents = 'none';
+        prof_page.style.overflowY = 'hidden';
+        acc_page.ontransitionend = enableHome();
+    }
+
+    const reg_cont = document.getElementById("region");
+    const prov_cont = document.getElementById("prov");
+    const city_cont = document.getElementById("city");
+    const brgy_cont = document.getElementById("brgy");
+    const default_cont = document.querySelectorAll("#default");
+
+    var region_dict = {};
+    var prov_dict = {};
+    var city_dict = {};
+
+    async function appendRegion() {
+        const response = await fetch("./data/refregion.json");
+        region_data = await response.json();
+
+        region_data.RECORDS.forEach(function(record){
+            region_dict[record.regDesc] = record.regCode;
+            let reg_opt = document.createElement("option");
+            reg_opt.value = record.regDesc;
+
+            if(reg_opt.value === loggedInData['region']){
+                reg_opt.selected =true;
+                updateProv();
+            }
+            reg_opt.innerHTML = record.regDesc;
+            reg_cont.append(reg_opt);
+        });
+    }
+
+    function updateReg(){
+        appendRegion();
+    }
+
+    async function updateProv(){
+        prov_dict = {};
+
+        removeOptions(prov_cont);
+        removeOptions(city_cont);
+        removeOptions(brgy_cont);
+
+        default_cont.forEach((el) => resetDefault(el));
+
+        const response = await fetch("./data/refprovince.json");
+        prov_data = await response.json();
+
+        prov_data.RECORDS.forEach(function(record){
+            prov_dict[record.provDesc] = record.provCode;
+            let prov_opt = document.createElement("option");
+            if (record.regCode == region_dict[reg_cont.value]){
+                prov_opt.value = record.provDesc;
+                if(prov_opt.value === loggedInData['prov']){
+                    prov_opt.selected =true;
+                    updateCity();
+                }
+                prov_opt.innerHTML = record.provDesc;
+                prov_cont.append(prov_opt);
+            }
+        });
+    }
+
+    async function updateCity(){
+        city_dict = {};
+
+        removeOptions(city_cont);
+        removeOptions(brgy_cont);
+
+        resetDefault(default_cont[1]);
+        resetDefault(default_cont[2]);
+
+        const response = await fetch("./data/refcitymun.json");
+        city_data = await response.json();
+
+        city_data.RECORDS.forEach(function(record){
+            city_dict[record.citymunDesc] = record.citymunCode;
+            let city_opt = document.createElement("option");
+            if (record.provCode == prov_dict[prov_cont.value]){
+                city_opt.value = record.citymunDesc;
+                if(city_opt.value === loggedInData['city']){
+                    city_opt.selected =true;
+                    updateBrgy();
+                }
+                city_opt.innerHTML = record.citymunDesc;
+                city_cont.append(city_opt);
+                
+            }
+        });
+    }
+
+    async function updateBrgy(){
+        
+        removeOptions(brgy_cont);
+
+        resetDefault(default_cont[2]);
+
+        const response = await fetch("./data/refbrgy.json");
+        brgy_data = await response.json();
+
+        brgy_data.RECORDS.forEach(function(record){
+            let brgy_opt = document.createElement("option");
+            if (record.citymunCode == city_dict[city_cont.value]){
+                brgy_opt.value = record.brgyDesc;
+                if(brgy_opt.value === loggedInData['brgy']){
+                    brgy_opt.selected =true;
+                }
+                brgy_opt.innerHTML = record.brgyDesc;
+                brgy_cont.append(brgy_opt);
+            }
+        });
+    }
+
+    function removeOptions(cont){
+        while(cont.lastChild.id !== "default") {
+            cont.removeChild(cont.lastChild);
+        }
+    }
+
+    function resetDefault(opt){
+        opt.disabled = false;
+        opt.selected = true;
+        opt.disabled = true;
+    }
+
+    let pass_check = false;
+
+    function checkPass() {
+        let password = document.getElementById("pass");
+        let repassword = document.getElementById("repass");
+        let passcheck = document.getElementById("pass_check");
+        let passconfirm = document.getElementById("pass_confirm");
+
+        if (password.value !== ""){
+            if(password.value.length < 4){
+                passcheck.innerHTML = "Password is less than 4 characters";
+                passcheck.style.color = "#FF7F7F";
+            }
+            else {
+                passcheck.innerHTML = "Password looks good";
+                passcheck.style.color = "#90EE90";
+            }
+        }
+
+        if (repassword.value !== ""){
+            if(password.value == repassword.value) {
+                passconfirm.innerHTML = "Passwords match.";
+                passconfirm.style.color = "#90EE90";
+                pass_check = 1;
+            }
+            else {
+                passconfirm.innerHTML = "Passwords does not match.";
+                passconfirm.style.color = "	#FF7F7F";
+                pass_check = 0;
+            }
+        }
+    }
+
+    function checkUsername(){
+        let username = document.getElementById('username').value;
+        let usercheck = document.getElementById('user_confirm');
+
+        let userInfo = {
+            username : username,
+        };
+
+        fetch('accountcheck.php', {
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json; characterset=utf8"
+            },
+            "body": JSON.stringify(userInfo)
+            }).then((res) => res.json()).then(response => {
+                let account = response[0];
+                
+                if(loggedInData['username'] === username) {
+                    usercheck.innerHTML = "Consists of only letters and numbers."
+                    usercheck.style.color = "#7e7e7e";
+                }
+                else if(account != undefined){
+                    usercheck.innerHTML = "Username is unavailable."
+                    usercheck.style.color = "#FF7F7F";
+                }
+                else if(username === "" || username.indexOf(' ') >= 0) {
+                    usercheck.innerHTML = "Invalid username."
+                    usercheck.style.color = "#FF7F7F";
+                }
+                else {
+                    usercheck.innerHTML = "Username is available."
+                    usercheck.style.color = "#90EE90";
+                }
+                
+            }).catch(error => console.log(error));
+    }
+
+    function setValues(){
+        document.getElementById('username').value = loggedInData['username'];
+        document.getElementById('pass').value = loggedInData['pass'];
+        document.getElementById('repass').value = loggedInData['pass']
+        document.getElementById('lname').value = loggedInData['lname'];
+        document.getElementById('fname').value = loggedInData['fname'];
+        document.getElementById('mname').value = loggedInData['mname'];
+        document.getElementById('bdate').value = loggedInData['bdate'];
+        document.getElementById('useremail').value = loggedInData['useremail'];
+        document.getElementById('cnum').value = loggedInData['cnum'];
+
+        let gender =document.getElementById("gender").children;
+        for(let i=0; i<gender.length; i++){
+            for(let j=0; j<gender[i].children.length; j++){
+                if(gender[i].children[j].value === loggedInData['gender']){
+                    gender[i].children[j].checked = true;
+                }
+            }
+        }
+
+        let empstatus =document.getElementById("empstatus").children;
+        for(let i=0; i<empstatus.length; i++){
+            for(let j=0; j<empstatus[i].children.length; j++){
+                if(empstatus[i].children[j].value === loggedInData['empstatus']){
+                    empstatus[i].children[j].checked = true;
+                }
+            }
+        }
+
+        let disability =document.getElementById("disability").children;
+        for(let i=0; i<disability.length; i++){
+            for(let j=0; j<disability[i].children.length; j++){
+                if(disability[i].children[j].value === loggedInData['disability']){
+                    disability[i].children[j].checked = true;
+                }
+            }
+        }
+
+        document.getElementById('additional').value = loggedInData['additional'];
+        document.getElementById('address1').value = loggedInData['address1'];
+        document.getElementById('address2').value = loggedInData['address2'];
+
+        let country_child = document.getElementById('country').children;
+        for(let i=0; i<country_child.length; i++){
+            if(country_child[i].value === loggedInData['country']){
+                country_child[i].selected = true;
+                appendRegion();
+            }
+        }
+
+        document.getElementById('pcode').value =loggedInData['pcode'];
+    }
+
+    const submit_butt = document.getElementById("submit_cont");
+
+    function updateValues(event){
+        let newData =loggedInData;
+
+        newData['username'] = document.getElementById('username').value;
+        newData['pass'] = document.getElementById('pass').value ;
+        newData['pass'] = document.getElementById('repass').value; 
+        newData['lname'] = document.getElementById('lname').value;
+        newData['fname'] = document.getElementById('fname').value;
+        newData['mname'] = document.getElementById('mname').value;
+        newData['bdate'] = document.getElementById('bdate').value;
+        newData['useremail'] = document.getElementById('useremail').value;
+        newData['cnum'] = document.getElementById('cnum').value;
+
+        let gender =document.getElementById("gender").children;
+        for(let i=0; i<gender.length; i++){
+            for(let j=0; j<gender[i].children.length; j++){
+                if(gender[i].children[j].checked){
+                    newData['gender'] = gender[i].children[j].value;
+                }
+            }
+        }
+        
+        let empstatus =document.getElementById("empstatus").children;
+        for(let i=0; i<empstatus.length; i++){
+            for(let j=0; j<empstatus[i].children.length; j++){
+                if(empstatus[i].children[j].checked){
+                    newData['empstatus'] = empstatus[i].children[j].value;
+                }
+            }
+        }
+
+        let disability =document.getElementById("disability").children;
+        for(let i=0; i<disability.length; i++){
+            for(let j=0; j<disability[i].children.length; j++){
+                if(disability[i].children[j].checked){
+                    newData['disability'] = disability[i].children[j].value;
+                }
+            }
+        }
+
+        newData['additional'] = document.getElementById('additional').value;
+        newData['address1'] = document.getElementById('address1').value;
+        newData['address2'] = document.getElementById('address2').value;
+
+        let country_child = document.getElementById('country').children;
+        for(let i=0; i<country_child.length; i++){
+            if(country_child[i].selected === true){
+                newData['country'] = country_child[i].value;
+            }
+        }
+
+        let region_child = document.getElementById('region').children;
+        for(let i=0; i<region_child.length; i++){
+            if(region_child[i].selected === true){
+                newData['region'] = region_child[i].value;
+            }
+        }
+
+        let prov_child = document.getElementById('prov').children;
+        for(let i=0; i<prov_child.length; i++){
+            if(prov_child[i].selected === true){
+                newData['prov'] = prov_child[i].value;
+            }
+        }
+
+        let city_child = document.getElementById('city').children;
+        for(let i=0; i<city_child.length; i++){
+            if(city_child[i].selected === true){
+                newData['city'] = city_child[i].value;
+            }
+        }
+
+        let brgy_child = document.getElementById('brgy').children;
+        for(let i=0; i<brgy_child.length; i++){
+            if(brgy_child[i].selected === true){
+                newData['brgy'] = brgy_child[i].value;
+            }
+        }
+
+        newData['pcode'] = document.getElementById('pcode').value;
+
+        fetch('update.php', {
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json; characterset=utf8"
+            },
+            "body": JSON.stringify(newData)
+        }).then((res) => res.json()).then(response => {
+            let account = response[0];
+
+            sessionStorage.removeItem('loggedInUser');
+            localStorage.clear();
+            sessionStorage.clear();
+            sessionStorage.setItem("loggedInUser", JSON.stringify(account));
+            updateProfile(account);
+
+        }).catch(error => console.log(error));
+
+        event.preventDefault();
+    }
+    document.getElementById('updateform').addEventListener("submit", updateValues);  
+
+    function deactivateAccount(){
+        let accountData = {
+                            id: loggedInData.id
+        }
+        fetch('delete.php', {
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json; characterset=utf8"
+            },
+            "body": JSON.stringify(accountData)
+        })
+        sessionStorage.removeItem('loggedInUser');
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = "index.html";
+    }
+</script>
+</body>
+</html>

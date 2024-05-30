@@ -3,16 +3,16 @@ if(isset($_POST)){
     $userdata = file_get_contents("php://input");
     $userinfo = json_decode($userdata, true);
     
-    $username = $userinfo['username'];
+    $userid = $userinfo['id'];
 
     $conn = mysqli_connect('localhost', 'root', '', 'database');
-
     if(!$conn){
         die('Connection Failed : '.mysqli_connect_error());
     }
     else{
-        $query = mysqli_query($conn, "SELECT * FROM registration WHERE username='$username'");
-        $result = mysqli_fetch_all($query, MYSQLI_ASSOC);
-        exit(json_encode($result));
+        echo "<h1>$userid</h1>";
+        $query = mysqli_query($conn, "INSERT INTO `archived` SELECT * FROM `registration` WHERE id = $userid");
+        $query = mysqli_query($conn, "DELETE FROM `registration` WHERE id = $userid;");
     }
+    mysqli_close($con);
 }

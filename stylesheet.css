@@ -66,9 +66,14 @@ footer {
     justify-content: center;
     font-weight: 200;
     color: #bec6c6;
+    text-align: center;
 }
 
-#alert {
+a {
+    text-decoration: none;
+}
+
+#alert, #revoke_alert {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -76,35 +81,45 @@ footer {
     width: 50%;
     height: 500px;
     background-color: #0a181b3d;
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 20px #b1b1b1;
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 0px 20px #b1b1b17a;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-radius: 40px;
-    z-index: 1;
+    z-index: 100;
     opacity: 0%;
     pointer-events: none;
     transition: all ease-in-out 0.25s;
+    cursor: pointer;
+    padding: 32px;
 }
 
-#alert.active {
+#revoke_alert {
+    cursor: auto;
+}
+
+#alert.active, #revoke_alert.active {
     opacity: 100%;
     pointer-events: all;
 }
 
-#alert h1 {
+#alert h1, #revoke_alert h1 {
     font-family: UniSans;
     font-size: 40pt;
     margin: 0;
 }
 
-#alert p {
+#alert p, #revoke_alert p {
     font-family: Poppins;
     color: #b3b8b8;
     font-size: 14pt;
     font-weight: 200;
+}
+
+#revoke_alert p {
+    margin-bottom: 72px;
 }
 
 #alert p:nth-child(3){
@@ -157,6 +172,10 @@ footer {
 
 .landing_title form {
     width: 100%;
+}
+
+#title {
+    cursor: pointer;
 }
 
 #title h1 {
@@ -270,7 +289,7 @@ input[type="text"], input[type="email"], input[type="date"], input[type="passwor
     width: 100%;
 }
 
-.landing_title input[type = "button"], .landing_title input[type = "submit"] {
+.landing_title input[type = "button"], .landing_title input[type = "submit"], #revoke_alert input[type = "button"] {
     width: 100%;
     position: relative;
     left: 50%;
@@ -303,9 +322,13 @@ input[type="text"], input[type="email"], input[type="date"], input[type="passwor
     margin-top: 20px;
 }
 
-.landing_title input[type = "button"]:hover {
+.landing_title input[type = "button"]:hover, #revoke_alert input[type = "button"]:hover {
     color: #ececec;
     box-shadow: inset 5px 0px 10px #ececec;
+}
+
+#revoke_alert input[type = "button"]{
+    margin: 10px;
 }
 
 .account {
@@ -420,7 +443,7 @@ input[type="file"] {
     box-shadow: 0px 0px 20px #d4dcdc67;
 }
 
-input[type="submit"] {
+input[type="submit"], #update_info {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -438,7 +461,7 @@ input[type="submit"] {
     transition: all ease-in-out 0.25s;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, #update_info:hover {
     padding: 20px;
     font-size: 24pt;
     border-radius: 40px;
@@ -481,36 +504,59 @@ input[type="submit"]:hover {
     transition: all ease-in-out 0.5s;
 }
 
+#profile_page {
+    overflow-y: hidden;
+}
+
+#profile_page::-webkit-scrollbar {
+    display: none;
+}
+
 #home_page {
+    position: fixed;
     width: 100%;
     height: 100%;
     opacity: 100%;
     animation: in_anim 2s ease-in-out;
+    z-index: 1;
+    transition: all ease-in-out 0.5s;
 }
 
-#home_page header {
+#profile_header {
+    position: fixed;
+    top: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    z-index: 2;
+    transition: all ease-in-out 0.5s;
+    animation: in_anim 2s ease-in-out;
+    backdrop-filter: blur(10px);
 }
 
-#home_page p {
+#profile_header #nav_bar {
+    width: 360px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#profile_header p {
     font-weight: 300;
-    font-size: 15pt;
+    font-size: 14pt;
     color: #969e9e;
     cursor: pointer;
     transition: all ease-in-out 0.25s;
 }
 
-#home_page p:hover {
+#profile_header p:hover {
     color: #bcc4c4;
     text-shadow: 0px 0px 5px #b2baba;
 }
 
 #home_page #main_segment {
-    position: relative;
+    position: absolute;
     width: 90%;
-    height: 70%;
+    height: 85%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -521,6 +567,7 @@ input[type="submit"]:hover {
     font-size: 80pt;
     text-shadow: 0px 0px 10px #ecececa8;
     margin: 0;
+    text-align: center;
 }
 
 #main_segment h2 {
@@ -528,6 +575,7 @@ input[type="submit"]:hover {
     font-family: Poppins;
     font-weight: 200;
     font-size: 28pt;
+    text-align: center;
 }
 
 #main_segment h3 {
@@ -536,12 +584,39 @@ input[type="submit"]:hover {
     font-weight: 200;
     font-size: 16pt;
     color: #bcc4c4;
+    text-align: center;
 }
 
 #main_segment #main_text{
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+}
+
+#manage_acc {
+    opacity: 0%;
+    pointer-events: 0%;
+    z-index: -1;
+    transition: all ease-in-out 0.5s;
+    transform: translateY(132px);
+}
+
+#manage_acc #submit_cont {
+    filter: none;
+    pointer-events: all;
+    transition: 0.5s all ease-in-out;
+}
+
+#revoke {
+    color: #bcc4c4;
+    font-weight: 200;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#revoke:hover {
+    text-shadow: 0px 0px 5px #dadddd;
+    text-decoration: underline #dadddd 1px;
 }
 
 @keyframes power_unstable {
@@ -715,6 +790,12 @@ input[type="submit"]:hover {
 
     .form_title {
         text-align: center;
+    }
+
+    #alert {
+        width: 80%;
+        height: 80%;
+        padding: 20px;
     }
 }
 

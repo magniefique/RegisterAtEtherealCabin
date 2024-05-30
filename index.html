@@ -29,16 +29,16 @@ session_start();
                 <div class="login">
                     <input type="password" id="loginpass" name="loginpass" placeholder="Password" pattern=".{4,}" oninput="checkPass()" required>
                 </div>
-                <input type="button" value="Log In" onclick="logIn();">
+                <input type="submit" value="Log In">
             </form>
-            <p>Or</p>
+            <p style="font-family: Poppins; font-weight: 300;">Or</p>
             <input type="button" value="Join Us" onclick="disableLanding()">
         </div>
     </section>
 
     <main id="reg_page">
         <header>
-            <div id="title">
+            <div id="title" onclick="enableLanding()">
                 <h1>CABIN 626</h1>
                 <p>providing an ethereal living.</p>
             </div>
@@ -269,10 +269,10 @@ session_start();
                         </div>
                         
                         <div class="l_cont">
-                            <p class="file_label">Upload a Short Video Introduction of Yourself</p>
+                            <p class="file_label">Upload a Photo of Yourself</p>
                             <div class="file_custom">
                                 <label for="memberfile" class="file_button">Upload</label>
-                                <input type="file" id="memberfile" name="memberfile" accept="video/*" onchange="changeText();">
+                                <input type="file" id="memberfile" name="memberfile" accept="image/*" onchange="changeText();">
                             </div>
                         </div>
                         <div class="l_cont">

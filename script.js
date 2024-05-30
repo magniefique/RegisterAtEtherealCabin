@@ -1,5 +1,17 @@
+window.onpageshow = function(event) {
+    if(sessionStorage.getItem('loggedInUser')!= null){
+        window.location.href = "profile.html";
+    }
+};
+
 const landing_page = document.getElementById("landing_page");
 const home_page = document.getElementById("reg_page");
+
+function enableLanding(){
+    window.location.href = "index.html";
+    localStorage.clear();
+    sessionStorage.clear();
+}
 
 function disableLanding()
 {
@@ -126,10 +138,10 @@ function resetDefault(opt){
     opt.disabled = true;
 }
 
-let pass_check = false;
 let cnum_check = false
 let verif1 = false;
 let verif2 = false;
+let pass_check = false;
 
 function checkPass() {
     let password = document.getElementById("pass");
@@ -336,10 +348,11 @@ function formSubmit(event) {
   
     request.send(new FormData(event.target));
     event.preventDefault();
-    window.location.replace("http://localhost/RegistrationForm/acknowledgement.php");
+    window.location.replace("http://localhost/RegistrationForm/acknowledgement.html");
 }
 
 document.getElementById('regform').addEventListener("submit", formSubmit);
+
 const alert_win = document.getElementById('alert');
 
 function logIn(event){
@@ -359,8 +372,8 @@ function logIn(event){
 
         if(account != undefined){
             if(account.pass == password){
-                localStorage.setItem("loggedInUser", JSON.stringify(account));
-                window.location.href = "profile.php";
+                sessionStorage.setItem("loggedInUser", JSON.stringify(account));
+                window.location.href = "profile.html";
             }
             else {
                 alert_win.classList.add('active');
@@ -369,16 +382,17 @@ function logIn(event){
         else {
             alert_win.classList.add('active');
         }
-        
     }).catch(error => console.log(error));
 
     event.preventDefault();
 }
 
+document.getElementById('login').addEventListener("submit", logIn);  
+
 function checkUsername(){
     let username = document.getElementById('username').value;
     let usercheck = document.getElementById('user_confirm');
-
+    
     let userInfo = {
         username : username,
     };
@@ -394,6 +408,10 @@ function checkUsername(){
 
         if(account != undefined){
             usercheck.innerHTML = "Username is unavailable."
+            usercheck.style.color = "#FF7F7F";
+        }
+        else if(username === "" || username.indexOf(' ') >= 0) {
+            usercheck.innerHTML = "Invalid username."
             usercheck.style.color = "#FF7F7F";
         }
         else {

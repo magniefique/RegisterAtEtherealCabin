@@ -68,7 +68,7 @@ if($conn->connect_error){
 else {
     $stmnt = $conn->prepare("insert into registration(username, pass, lname, fname, mname, bdate, useremail, cnum, gender, empstatus, disability, additional, address1, address2, country, region, prov, city, brgy, pcode, membertyper, memberdur, ref, memberfile, verif1, verif2)
     values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmnt->bind_param("sssssssisssssssssssisissss", $username, $pass, $lname, $fname, $mname, $bdate, $useremail, $cnum, $gender, $empstatus, $disability, $additional, $address1, $address2, $country, $region, $prov, $city, $brgy, $pcode, $membertyper, $memberdur, $ref, $memberfile, $verif1, $verif2);
+    $stmnt->bind_param("sssssssssssssssssssisissss", $username, $pass, $lname, $fname, $mname, $bdate, $useremail, $cnum, $gender, $empstatus, $disability, $additional, $address1, $address2, $country, $region, $prov, $city, $brgy, $pcode, $membertyper, $memberdur, $ref, $memberfile, $verif1, $verif2);
     $stmnt->execute();
     $stmnt->close();
     $conn->close();
